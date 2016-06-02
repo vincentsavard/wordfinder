@@ -9,7 +9,7 @@ TrieNode::TrieNode(std::string value)
 {}
 
 TrieNode::~TrieNode() noexcept {
-	for (auto& pair : children) {
+	for (const std::pair<std::string, TrieNode*>& pair : children) {
 		delete pair.second;
 	}
 }
@@ -23,7 +23,7 @@ void TrieNode::mark_as_word() noexcept {
 }
 
 bool TrieNode::contains_character(const std::string& character) const noexcept {
-	return children.find(character) != children.end();
+	return children.find(character) != children.cend();
 }
 
 void TrieNode::add_child_for_character(const std::string& character) {
@@ -36,10 +36,6 @@ TrieNode* TrieNode::get_child_for_character(const std::string& character) {
 
 std::string TrieNode::get_value() const noexcept {
 	return value;
-}
-
-std::size_t TrieNode::hash() const {
-	return std::hash<std::string>()(value);
 }
 
 }

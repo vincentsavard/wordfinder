@@ -5,7 +5,6 @@
 #include <string>
 #include <unordered_map>
 
-
 namespace wordfinder {
 namespace dictionary {
 
@@ -22,8 +21,6 @@ public:
 	std::string get_value() const noexcept;
 
 private:
-	std::size_t hash() const;
-
 	std::string value;
 	bool is_word;
 	std::unordered_map<std::string, TrieNode*> children;

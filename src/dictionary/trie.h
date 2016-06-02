@@ -14,20 +14,20 @@ class TrieNode;
 
 class TrieDictionaryContainer : public Dictionary {
 public:
-	TrieDictionaryContainer(const std::unordered_set<std::string>& allowed_characters);
+    TrieDictionaryContainer(const std::unordered_set<std::string>& allowed_characters);
     TrieDictionaryContainer(const TrieDictionaryContainer& grid) = delete;
     TrieDictionaryContainer& operator=(TrieDictionaryContainer grid) = delete;
 
-	virtual void add_word(const std::string& word) override;
-	virtual bool word_exists(const std::string& word) const noexcept override;
-	virtual bool radix_exists(const std::string& radix) const noexcept override;
+    virtual void add_word(const std::string& word) override;
+    virtual bool word_exists(const std::string& word) const noexcept override;
+    virtual bool radix_exists(const std::string& radix) const noexcept override;
 
 private:
-	TrieNode* find_node_for_radix(const std::string& radix) const noexcept;
-	bool is_word_allowed(const std::string& word) const noexcept;
+    TrieNode* find_node_for_radix(const std::string& radix) const noexcept;
+    bool is_word_allowed(const std::string& word) const noexcept;
 
-	std::unique_ptr<TrieNode> root;
-	std::unordered_set<std::string> allowed_characters;
+    std::unique_ptr<TrieNode> root;
+    std::unordered_set<std::string> allowed_characters;
 };
 
 }
