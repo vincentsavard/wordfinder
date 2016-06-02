@@ -23,4 +23,4 @@ private:
 }
 }
 
-#endif POSITION_HEADER_GUARD
+#endif
