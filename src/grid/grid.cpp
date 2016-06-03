@@ -5,7 +5,6 @@
 #include <algorithm>
 #include <cassert>
 #include <iterator>
-#include <set>
 #include <sstream>
 
 namespace wordfinder {
@@ -27,7 +26,7 @@ std::vector<std::string> Grid::generate_combinations() const {
     for (const Position& position : generate_positions()) {
         std::vector<std::vector<Position>> position_combinations;
         std::vector<Position> current_combination;
-        std::set<Position> visited_positions;
+        std::unordered_set<Position> visited_positions;
 
         find_combinations_from_position(position, position_combinations, current_combination, visited_positions);
 
@@ -57,7 +56,7 @@ std::vector<Position> Grid::generate_positions() const noexcept {
     return positions;
 }
 
-void Grid::find_combinations_from_position(const Position& position, std::vector<std::vector<Position>>& combinations, std::vector<Position> current_combination, std::set<Position> visited_positions) const {
+void Grid::find_combinations_from_position(const Position& position, std::vector<std::vector<Position>>& combinations, std::vector<Position> current_combination, std::unordered_set<Position> visited_positions) const {
     current_combination.push_back(position);
     combinations.push_back(current_combination);
     visited_positions.emplace(position);

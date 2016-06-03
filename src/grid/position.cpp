@@ -16,10 +16,6 @@ bool Position::operator!=(const Position& other_position) const noexcept {
     return !operator==(other_position);
 }
 
-bool Position::operator<(const Position& other_position) const noexcept {
-    return i < other_position.i || i == other_position.i && j < other_position.j;
-}
-
 size_t Position::get_i() const noexcept {
     return i;
 }

@@ -4,8 +4,8 @@
 #include "grid_size.h"
 
 #include <memory>
-#include <set>
 #include <string>
+#include <unordered_set>
 #include <vector>
 
 namespace wordfinder {
@@ -25,7 +25,7 @@ public:
 
 private:
     std::vector<Position> generate_positions() const noexcept;
-    void find_combinations_from_position(const Position& position, std::vector<std::vector<Position>>& combinations, std::vector<Position> current_combination, std::set<Position> visited_positions) const;
+    void find_combinations_from_position(const Position& position, std::vector<std::vector<Position>>& combinations, std::vector<Position> current_combination, std::unordered_set<Position> visited_positions) const;
     size_t linearize_position(const Position& position) const noexcept;
 
     GridSize grid_size;
