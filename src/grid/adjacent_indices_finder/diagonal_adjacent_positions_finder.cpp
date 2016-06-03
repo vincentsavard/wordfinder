@@ -9,7 +9,7 @@ DiagonalAdjacentPositionsFinder::DiagonalAdjacentPositionsFinder(GridSize grid_s
     : grid_size(grid_size)
 {}
 
-std::vector<Position> DiagonalAdjacentPositionsFinder::find_adjacent_non_visited_indices_from_position(const Position & position, const std::unordered_set<Position>& visited_positions) const {
+std::vector<Position> DiagonalAdjacentPositionsFinder::find_adjacent_non_visited_indices_from_position(const Position& position, const std::unordered_set<Position>& visited_positions) const {
     std::vector<Position> adjacent_positions;
     size_t i, j;
 
@@ -37,11 +37,11 @@ std::vector<Position> DiagonalAdjacentPositionsFinder::find_adjacent_non_visited
     return adjacent_positions;
 }
 
-bool DiagonalAdjacentPositionsFinder::is_position_already_added(const Position & position, const std::vector<Position>& adjacent_positions) const {
+bool DiagonalAdjacentPositionsFinder::is_position_already_added(const Position& position, const std::vector<Position>& adjacent_positions) const {
     return std::find(adjacent_positions.cbegin(), adjacent_positions.cend(), position) != adjacent_positions.end();
 }
 
-bool DiagonalAdjacentPositionsFinder::was_position_already_visited(const Position & position, const std::unordered_set<Position>& visited_positions) const {
+bool DiagonalAdjacentPositionsFinder::was_position_already_visited(const Position& position, const std::unordered_set<Position>& visited_positions) const {
     return visited_positions.find(position) != visited_positions.cend();
 }
 
