@@ -1,3 +1,6 @@
+# Environment
+static/
+
 # Visual Studio
 .vs/
 project/
