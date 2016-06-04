@@ -23,7 +23,8 @@ public:
     Grid(
         GridSize grid_size,
         std::unique_ptr<AdjacentPositionsFinder> adjacent_positions_finder,
-        std::unique_ptr<dictionary::Dictionary> dictionary
+        std::unique_ptr<dictionary::Dictionary> dictionary,
+        size_t minimum_word_length = 0
     ) noexcept;
 
     Grid(const Grid& grid) = delete;
@@ -46,6 +47,7 @@ private:
     ) const;
 
     GridSize grid_size;
+    size_t minimum_word_length;
     std::vector<std::vector<std::string>> grid;
     std::unique_ptr<AdjacentPositionsFinder> adjacent_positions_finder;
     std::unique_ptr<dictionary::Dictionary> dictionary;

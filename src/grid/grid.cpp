@@ -14,12 +14,14 @@ namespace grid {
 Grid::Grid(
     GridSize grid_size,
     std::unique_ptr<AdjacentPositionsFinder> adjacent_positions_finder,
-    std::unique_ptr<dictionary::Dictionary> dictionary
+    std::unique_ptr<dictionary::Dictionary> dictionary,
+    size_t minimum_word_length
 ) noexcept
     : grid_size(grid_size)
     , grid(grid_size.calculate_cell_count())
     , adjacent_positions_finder(std::move(adjacent_positions_finder))
     , dictionary(std::move(dictionary))
+    , minimum_word_length(minimum_word_length)
 {}
 
 void Grid::fill_cell(const Position& position, std::vector<std::string> values) {
@@ -54,7 +56,7 @@ std::vector<std::string> Grid::find_words() const {
 
             current_word = word_stream.str();
 
-            if (dictionary->word_exists(current_word)) {
+            if (current_word.size() >= minimum_word_length && dictionary->word_exists(current_word)) {
                 words.push_back(current_word);
             }
         }
