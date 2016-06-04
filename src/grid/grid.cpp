@@ -62,6 +62,10 @@ std::vector<std::string> Grid::find_words() const {
         }
     }
 
+    std::sort(words.begin(), words.end(), [](const std::string& s, const std::string& t) {
+        return s.length() > t.length(); 
+    });
+
     return words;
 }
 
