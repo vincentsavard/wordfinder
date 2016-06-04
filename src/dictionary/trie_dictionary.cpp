@@ -1,4 +1,4 @@
-#include "trie.h"
+#include "trie_dictionary.h"
 #include "trie_node.h"
 
 #include <algorithm>
@@ -6,12 +6,12 @@
 namespace wordfinder {
 namespace dictionary {
 
-TrieDictionaryContainer::TrieDictionaryContainer(const std::unordered_set<std::string>& allowed_characters)
+TrieDictionary::TrieDictionary(const std::unordered_set<std::string>& allowed_characters)
     : root(std::make_unique<TrieNode>(""))
     , allowed_characters(allowed_characters)
 {}
 
-void TrieDictionaryContainer::add_word(const std::string& word) {
+void TrieDictionary::add_word(const std::string& word) {
     if (!is_word_allowed(word)) {
         return;
     }
@@ -31,17 +31,17 @@ void TrieDictionaryContainer::add_word(const std::string& word) {
     current_node->mark_as_word();
 }
 
-bool TrieDictionaryContainer::word_exists(const std::string& word) const noexcept {
+bool TrieDictionary::word_exists(const std::string& word) const noexcept {
     TrieNode* node = find_node_for_radix(word);
 
     return node != nullptr && node->is_a_word();
 }
 
-bool TrieDictionaryContainer::radix_exists(const std::string& radix) const noexcept {
+bool TrieDictionary::radix_exists(const std::string& radix) const noexcept {
     return find_node_for_radix(radix) != nullptr;
 }
 
-TrieNode* TrieDictionaryContainer::find_node_for_radix(const std::string& radix) const noexcept {
+TrieNode* TrieDictionary::find_node_for_radix(const std::string& radix) const noexcept {
     TrieNode* current_node = root.get();
 
     for (const char c_character : radix) {
@@ -57,7 +57,7 @@ TrieNode* TrieDictionaryContainer::find_node_for_radix(const std::string& radix)
     return current_node;
 }
 
-bool TrieDictionaryContainer::is_word_allowed(const std::string& word) const noexcept {
+bool TrieDictionary::is_word_allowed(const std::string& word) const noexcept {
     return std::all_of(word.cbegin(), word.cend(), [this](const char character) {
         return allowed_characters.find(std::string(1, character)) != allowed_characters.cend();
     });

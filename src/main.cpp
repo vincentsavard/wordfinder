@@ -3,7 +3,7 @@
 #include "grid/position.h"
 #include "grid/adjacent_indices_finder/diagonal_adjacent_positions_finder.h"
 #include "dictionary/dictionary.h"
-#include "dictionary/trie.h"
+#include "dictionary/trie_dictionary.h"
 
 #include <fstream>
 #include <iostream>
@@ -70,7 +70,7 @@ void fill_grid(wordfinder::grid::Grid* grid, const std::string& filepath) {
 std::unique_ptr<wordfinder::dictionary::Dictionary> build_dictionary(const std::string& filepath) {
     using namespace wordfinder::dictionary;
 
-    std::unique_ptr<Dictionary> dictionary = std::make_unique<TrieDictionaryContainer>(get_allowed_characters());
+    std::unique_ptr<Dictionary> dictionary = std::make_unique<TrieDictionary>(get_allowed_characters());
     fill_dictionary(dictionary.get(), filepath);
 
     return std::move(dictionary);

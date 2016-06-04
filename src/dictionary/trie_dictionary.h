@@ -12,11 +12,11 @@ namespace dictionary {
 
 class TrieNode;
 
-class TrieDictionaryContainer : public Dictionary {
+class TrieDictionary : public Dictionary {
 public:
-    TrieDictionaryContainer(const std::unordered_set<std::string>& allowed_characters);
-    TrieDictionaryContainer(const TrieDictionaryContainer& grid) = delete;
-    TrieDictionaryContainer& operator=(TrieDictionaryContainer grid) = delete;
+    TrieDictionary(const std::unordered_set<std::string>& allowed_characters);
+    TrieDictionary(const TrieDictionary& grid) = delete;
+    TrieDictionary& operator=(TrieDictionary grid) = delete;
 
     virtual void add_word(const std::string& word) override;
     virtual bool word_exists(const std::string& word) const noexcept override;
