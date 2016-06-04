@@ -30,6 +30,7 @@ void Grid::fill_cell(const Position& position, std::vector<std::string> values) 
 
 std::vector<std::string> Grid::find_words() const {
     std::vector<std::string> words;
+    std::unordered_set<std::string> unique_words;
 
     for (const Position& position : generate_positions()) {
         std::vector<std::vector<Position>> position_combinations;
@@ -56,12 +57,16 @@ std::vector<std::string> Grid::find_words() const {
 
             current_word = word_stream.str();
 
-            if (current_word.size() >= minimum_word_length && dictionary->word_exists(current_word)) {
-                words.push_back(current_word);
+            if (
+                current_word.size() >= minimum_word_length
+                && dictionary->word_exists(current_word)
+            ) {
+                unique_words.emplace(current_word);
             }
         }
     }
 
+    std::copy(unique_words.cbegin(), unique_words.cend(), std::back_inserter(words));
     std::sort(words.begin(), words.end(), [](const std::string& s, const std::string& t) {
         return s.length() > t.length(); 
     });
